@@ -50,8 +50,9 @@
       "name": "Wire"
     },
     {
+      "owner": "forrest",
       "name": "TPS25751",
-      "url": "https://github.com/forrestrae/TPS25751.git"
+      "version": "^2.0.0"
     }
   ]
 }
