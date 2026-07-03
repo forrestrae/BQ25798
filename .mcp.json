@@ -3,7 +3,7 @@
     "bq25798-docs": {
       "type": "stdio",
       "command": "uv",
-      "args": ["run", "../device-register-docs/server.py"],
+      "args": ["run", "../device-register-mcp-server/server.py"],
       "env": { "DEVICE_CONFIG": "devices/bq25798/device.json" }
     }
   }

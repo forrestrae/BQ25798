@@ -37,8 +37,8 @@ dependency resolves via `lib_deps = symlink://../TPS25751` in `platformio.ini`
 **IMPORTANT**: When working with BQ25798 registers, use the `bq25798-docs`
 register-docs MCP server for accurate register information extracted from the TI
 datasheet. The generic server engine and the device definitions live in the
-sibling **`lib/device-register-docs`** repository; this repo's `.mcp.json`
-invokes it cross-repo (`uv run ../device-register-docs/server.py` with
+sibling **`lib/device-register-mcp-server`** repository; this repo's `.mcp.json`
+invokes it cross-repo (`uv run ../device-register-mcp-server/server.py` with
 `DEVICE_CONFIG=devices/bq25798/device.json` — a relative `DEVICE_CONFIG`
 resolves against `server.py`'s own directory).
 
@@ -52,7 +52,7 @@ resolves against `server.py`'s own directory).
 > factors from the BQ25798 datasheet (SLUSE02). See
 > [docs/engineering/CONVENTIONS.md](docs/engineering/CONVENTIONS.md).
 
-**Detailed documentation:** See `../device-register-docs/AGENTS.md` (sibling repo).
+**Detailed documentation:** See `../device-register-mcp-server/AGENTS.md` (sibling repo).
 
 ---
 
@@ -180,11 +180,11 @@ Sibling repositories (side-by-side in the parent project's `lib/`):
 
 ```
 ../TPS25751/                # Host PD-controller library (this repo's dependency)
-../device-register-docs/    # Generic register-docs MCP server + device definitions
+../device-register-mcp-server/    # Generic register-docs MCP server + device definitions
 ```
 
 **Navigation:**
 - **Conventions & review traps:** [docs/engineering/CONVENTIONS.md](docs/engineering/CONVENTIONS.md)
 - **Extension-point contract / platform rules:** `../TPS25751/docs/engineering/` (ARCHITECTURE, STANDARDS, CONSTRAINTS)
 - **Examples:** [examples/README.md](examples/README.md)
-- **MCP server:** `../device-register-docs/AGENTS.md`
+- **MCP server:** `../device-register-mcp-server/AGENTS.md`
