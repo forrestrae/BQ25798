@@ -11,10 +11,11 @@ This document collects the BQ25798-specific correctness conventions and review
 traps for the driver's register classes. It is the device-specific companion to
 the generic downstream-device extension-point contract defined in the TPS25751
 library — see **ADR-008 (decode tier), ADR-009 (write encoders), and ADR-010
-(dual transport)** in the sibling repo's
-`../../../TPS25751/docs/engineering/ARCHITECTURE.md`, and the generic I2Cr/I2Cw
-framing rules in its `CONSTRAINTS.md` ("4CC Command Interface & I2Cc
-Downstream-Device Proxy").
+(dual transport)** in the TPS25751 repo's
+[docs/engineering/ARCHITECTURE.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/ARCHITECTURE.md),
+and the generic I2Cr/I2Cw framing rules in its
+[CONSTRAINTS.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/CONSTRAINTS.md)
+("4CC Command Interface & I2Cc Downstream-Device Proxy").
 
 These conventions apply to all BQ25798 register classes and, by analogy, to any
 downstream device whose registers are big-endian. Conventions 1–3 cover **decode**
@@ -111,7 +112,9 @@ const uint16_t code = (mV <= kOffsetMv) ? 0
 
 Typed writes (`Device::writeRegister<T>()`) over the **proxied** transport ride the same
 I2Cw 4CC task as the raw write path, so the framing constraints from the TPS25751
-library's CONSTRAINTS.md ("4CC Command Interface & I2Cc Downstream-Device Proxy")
+library's
+[CONSTRAINTS.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/CONSTRAINTS.md)
+("4CC Command Interface & I2Cc Downstream-Device Proxy")
 apply unchanged: payload `len ≤ 11`, and `Length = payload + 1` (counts the
 register-offset byte). Self-clearing command bits (REG_RST, WD_RST, FORCE_*) are written
 as a `setX(true)`; the device clears them in hardware, so a subsequent read returns 0.

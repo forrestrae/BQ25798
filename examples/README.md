@@ -17,8 +17,9 @@ pio device monitor                             # 115200 baud
 ```
 
 Replace `example-bq25798-status` with any environment from the table below. The
-root `platformio.ini` resolves the TPS25751 dependency via
-`lib_deps = symlink://../TPS25751` (sibling-checkout layout).
+root `platformio.ini` resolves the
+[TPS25751](https://registry.platformio.org/libraries/forrest/TPS25751) dependency
+from the PlatformIO Registry (`lib_deps = forrest/TPS25751@^2.0.0`).
 
 ## Available Examples
 
@@ -43,6 +44,6 @@ root `platformio.ini` resolves the TPS25751 dependency via
 - [`../README.md`](../README.md) — repo overview and quick start
 - [`../AGENTS.md`](../AGENTS.md) — developer guide (decode/encode conventions,
   factory pattern, dual transport)
-- The host [TPS25751 library](https://github.com/forrestrae/TPS25751)'s
-  `examples/README.md` — host-controller examples (`read-registers`,
-  `load-patch-bundle`)
+- The host TPS25751 library's
+  [examples/README.md](https://github.com/forrestrae/TPS25751/blob/main/examples/README.md)
+  — host-controller examples (`read-registers`, `load-patch-bundle`)

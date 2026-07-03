@@ -24,11 +24,14 @@ secondary I2Cc bus (proxied over the I2Cr/I2Cw 4CC command-tasks), or optionally
   `Device(wire, addr)` — all 57+ typed accessors work identically over either
 - Platform-optimized for Teensy 4.x (ARM Cortex-M7, no RTTI)
 
-**Dependency:** this library depends on the sibling **`lib/TPS25751`** library
+**Dependency:** this library depends on the **TPS25751** library
 (`TPS25751Register`, `TPS25751DownstreamDevice`, and their transitive public
-headers). Nothing in TPS25751 depends on this repo. For local development the
-dependency resolves via `lib_deps = symlink://../TPS25751` in `platformio.ini`
-(side-by-side checkout in the parent project's `lib/`).
+headers). Nothing in TPS25751 depends on this repo. The dependency resolves from
+the PlatformIO Registry
+([forrest/TPS25751](https://registry.platformio.org/libraries/forrest/TPS25751))
+via `lib_deps = forrest/TPS25751@^2.0.0` in `platformio.ini`. To co-develop
+against a local sibling checkout instead, temporarily switch `lib_deps` to
+`symlink://../TPS25751`.
 
 ---
 
@@ -52,7 +55,9 @@ resolves against `server.py`'s own directory).
 > factors from the BQ25798 datasheet (SLUSE02). See
 > [docs/engineering/CONVENTIONS.md](docs/engineering/CONVENTIONS.md).
 
-**Detailed documentation:** See `../device-register-mcp-server/AGENTS.md` (sibling repo).
+**Detailed documentation:** See the sibling repo's
+[AGENTS.md](https://github.com/forrestrae/device-register-mcp-server/blob/main/AGENTS.md)
+(checked out locally at `../device-register-mcp-server/`).
 
 ---
 
@@ -120,8 +125,9 @@ Full detail and code examples in
 
 ### Governing design records (in the TPS25751 repo)
 
-The extension-point contract this driver implements is recorded in the sibling
-repo's `../TPS25751/docs/engineering/ARCHITECTURE.md`:
+The extension-point contract this driver implements is recorded in the TPS25751
+repo's
+[docs/engineering/ARCHITECTURE.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/ARCHITECTURE.md):
 
 - **ADR-007** — 4CC command-task layer + I2Cr/I2Cw proxy (the transport this
   driver rides in proxied mode)
@@ -131,8 +137,11 @@ repo's `../TPS25751/docs/engineering/ARCHITECTURE.md`:
   encode/decode constant sharing
 - **ADR-010** — dual transport: optional direct-I2C constructor
 
-The TPS25751 repo's `docs/engineering/STANDARDS.md` ("Downstream Device Register
-Classes") defines the mandatory register-class template; its `CONSTRAINTS.md`
+The TPS25751 repo's
+[STANDARDS.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/STANDARDS.md)
+("Downstream Device Register Classes") defines the mandatory register-class
+template; its
+[CONSTRAINTS.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/CONSTRAINTS.md)
 covers the platform rules (no RTTI, `F()` macro, I2Cr/I2Cw framing) that apply
 here unchanged.
 
@@ -142,7 +151,7 @@ here unchanged.
 
 This directory is a **library** with a root `platformio.ini` that defines one
 PlatformIO environment per bundled example (`[env:example-<name>]`), pulling in
-the sibling TPS25751 library via `lib_deps = symlink://../TPS25751`.
+the TPS25751 library from the registry via `lib_deps = forrest/TPS25751@^2.0.0`.
 
 ```bash
 # From this library root (where platformio.ini lives):
@@ -164,7 +173,8 @@ what each demonstrates.
 
 Publishing to the PlatformIO Registry is automated by
 `.github/workflows/publish.yml` (same setup as the TPS25751 repo; design notes in
-`../TPS25751/docs/plans/platformio-pkg-publish.md`):
+its
+[docs/plans/platformio-pkg-publish.md](https://github.com/forrestrae/TPS25751/blob/main/docs/plans/platformio-pkg-publish.md)):
 
 - **Every push to `main`** bumps the patch version in `library.json` **and**
   `library.properties` (via `scripts/bump_version.py` — the single source of truth
@@ -178,9 +188,9 @@ Publishing to the PlatformIO Registry is automated by
   what would be published with `pio pkg pack`.
 - Auth: the workflow needs a `PLATFORMIO_AUTH_TOKEN` repository secret
   (generate with `pio account token`).
-- The TPS25751 dependency in `library.json` currently points at the GitHub URL;
-  once TPS25751 is on the registry, switch it to an
-  `{"owner": "forrestrae", "name": "TPS25751", "version": "^x.y.z"}` spec.
+- The TPS25751 dependency in `library.json` is a registry spec
+  (`{"owner": "forrest", "name": "TPS25751", "version": "^2.0.0"}` —
+  [forrest/TPS25751](https://registry.platformio.org/libraries/forrest/TPS25751)).
 
 ---
 
@@ -207,8 +217,14 @@ Sibling repositories (side-by-side in the parent project's `lib/`):
 ../device-register-mcp-server/    # Generic register-docs MCP server + device definitions
 ```
 
+GitHub: [forrestrae/TPS25751](https://github.com/forrestrae/TPS25751) ·
+[forrestrae/device-register-mcp-server](https://github.com/forrestrae/device-register-mcp-server)
+
 **Navigation:**
 - **Conventions & review traps:** [docs/engineering/CONVENTIONS.md](docs/engineering/CONVENTIONS.md)
-- **Extension-point contract / platform rules:** `../TPS25751/docs/engineering/` (ARCHITECTURE, STANDARDS, CONSTRAINTS)
+- **Extension-point contract / platform rules:** the TPS25751 repo's
+  [docs/engineering/](https://github.com/forrestrae/TPS25751/tree/main/docs/engineering)
+  (ARCHITECTURE, STANDARDS, CONSTRAINTS)
 - **Examples:** [examples/README.md](examples/README.md)
-- **MCP server:** `../device-register-mcp-server/AGENTS.md`
+- **MCP server:** the device-register-mcp-server repo's
+  [AGENTS.md](https://github.com/forrestrae/device-register-mcp-server/blob/main/AGENTS.md)

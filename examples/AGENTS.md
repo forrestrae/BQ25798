@@ -80,5 +80,6 @@ used in this repo.
 
 - [`README.md`](README.md) — human-facing example index (keep this updated!)
 - [`../AGENTS.md`](../AGENTS.md) — driver developer guide
-- The host [TPS25751 library](https://github.com/forrestrae/TPS25751)'s
-  `docs/engineering/CONSTRAINTS.md` — I2C / 4CC downstream-device protocol gotchas
+- The host TPS25751 library's
+  [docs/engineering/CONSTRAINTS.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/CONSTRAINTS.md)
+  — I2C / 4CC downstream-device protocol gotchas

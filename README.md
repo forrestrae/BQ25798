@@ -87,9 +87,9 @@ pio run -e example-bq25798-status -t upload
 pio device monitor          # 115200 baud
 ```
 
-This repo's `platformio.ini` resolves the TPS25751 dependency via
-`lib_deps = symlink://../TPS25751`, assuming the sibling-checkout layout
-(`lib/TPS25751` next to `lib/BQ25798`). See
+This repo's `platformio.ini` resolves the
+[TPS25751](https://registry.platformio.org/libraries/forrest/TPS25751) dependency
+from the PlatformIO Registry (`lib_deps = forrest/TPS25751@^2.0.0`). See
 [`examples/README.md`](examples/README.md) for a description of what each
 example demonstrates.
 
@@ -100,9 +100,10 @@ This README is intentionally brief. For deeper detail, see:
 - **[examples/README.md](examples/README.md)** — what each bundled example demonstrates
 - **[AGENTS.md](AGENTS.md)** — developer guide: decode/encode conventions, factory
   pattern, dual transport, MCP usage, build commands
-- The host [TPS25751 library](https://github.com/forrestrae/TPS25751)'s
-  `docs/engineering/ARCHITECTURE.md` (ADR-008/009/010) documents the generic
-  downstream-device extension point this driver implements
+- The host TPS25751 library's
+  [docs/engineering/ARCHITECTURE.md](https://github.com/forrestrae/TPS25751/blob/main/docs/engineering/ARCHITECTURE.md)
+  (ADR-008/009/010) documents the generic downstream-device extension point this
+  driver implements
 
 Official Texas Instruments references:
 
@@ -120,8 +121,8 @@ Official Texas Instruments references:
 
 ## Contributing
 
-Contributions are welcome for non-commercial purposes. New register classes
-should follow the established decode/encode conventions — see `AGENTS.md`.
+Contributions are welcome. New register classes should follow the established
+decode/encode conventions — see [`AGENTS.md`](AGENTS.md).
 
 ## License
 
