@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/schema/library.json",
   "name": "BQ25798",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Arduino-compatible driver for the BQ25798, a buck-boost battery charger from Texas Instruments, reachable via a TPS25751 host's I2Cc bus or directly over I2C.",
   "keywords": "BQ25798, charger, buck-boost, Texas Instruments, TPS25751",
   "repository": {
