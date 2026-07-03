@@ -155,7 +155,7 @@ static const uint32_t kReadSpacingMs     = 5100;   ///< TRM: >=5 s between same-
 const TPS25751  pd;       // host on the primary I2Ct bus
 #if BQ_DIRECT_I2C
 // Direct (TwoWire&) constructor — plain I2C straight to the charger, no 4CC proxy.
-::Device bq(BQ_DIRECT_WIRE, BQ25798::kDefaultI2CAddress);
+BQ25798::Device bq(BQ_DIRECT_WIRE, BQ25798::kDefaultI2CAddress);
 #else
 BQ25798::Device bq(pd);   // typed BQ25798 driver over I2Cr/I2Cw 4CC tasks
 #endif
