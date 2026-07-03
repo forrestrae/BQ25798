@@ -1,0 +1,47 @@
+name: Publish to PlatformIO Registry
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write # push the version-bump commit and release tag
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Bump version
+        id: bump
+        env:
+          # Passed via env, never inline-interpolated (script-injection guard).
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          LEVEL=patch
+          case "$COMMIT_MSG" in
+            *"#major"*) LEVEL=major ;;
+            *"#minor"*) LEVEL=minor ;;
+          esac
+          echo "version=$(python3 scripts/bump_version.py "$LEVEL")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit bump and tag
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore(release): v${{ steps.bump.outputs.version }} [skip ci]"
+          git tag "v${{ steps.bump.outputs.version }}"
+          git push origin main --follow-tags
+
+      - name: Publish
+        env:
+          PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
+        run: pio pkg publish --no-interactive

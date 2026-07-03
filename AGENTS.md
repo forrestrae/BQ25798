@@ -160,6 +160,30 @@ what each demonstrates.
 
 ---
 
+## Publishing
+
+Publishing to the PlatformIO Registry is automated by
+`.github/workflows/publish.yml` (same setup as the TPS25751 repo; design notes in
+`../TPS25751/docs/plans/platformio-pkg-publish.md`):
+
+- **Every push to `main`** bumps the patch version in `library.json` **and**
+  `library.properties` (via `scripts/bump_version.py` — the single source of truth
+  for bumps; never edit the version fields by hand), commits the bump back as
+  `chore(release): vX.Y.Z [skip ci]`, tags `vX.Y.Z`, and runs
+  `pio pkg publish --no-interactive`.
+- Include `#minor` or `#major` in the commit message to raise the bump level
+  (default is patch).
+- The registry tarball is filtered by the `export.exclude` list in `library.json`
+  (dev tooling, IDE configs, `platformio.ini`, `scripts/` are not shipped). Check
+  what would be published with `pio pkg pack`.
+- Auth: the workflow needs a `PLATFORMIO_AUTH_TOKEN` repository secret
+  (generate with `pio account token`).
+- The TPS25751 dependency in `library.json` currently points at the GitHub URL;
+  once TPS25751 is on the registry, switch it to an
+  `{"owner": "forrestrae", "name": "TPS25751", "version": "^x.y.z"}` spec.
+
+---
+
 ## Documentation Structure
 
 ```

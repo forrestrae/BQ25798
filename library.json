@@ -19,6 +19,32 @@
   "license": "Apache-2.0",
   "frameworks": "arduino",
   "platforms": "*",
+  "export": {
+    "exclude": [
+      ".github",
+      ".claude",
+      ".cursor",
+      ".idea",
+      ".junie",
+      ".pio",
+      ".venv",
+      ".vscode",
+      ".mcp.json",
+      ".gitignore",
+      ".DS_Store",
+      "**/.DS_Store",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "**/AGENTS.md",
+      "**/CLAUDE.md",
+      "docs/*.pdf",
+      "docs/plans",
+      "docs/specs",
+      "platformio.ini",
+      "scripts",
+      "test"
+    ]
+  },
   "dependencies": [
     {
       "name": "Wire"
