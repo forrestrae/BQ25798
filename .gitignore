@@ -1,0 +1,22 @@
+.pio
+.venv/
+venv/
+
+# Texas Instruments datasheets — not redistributable
+docs/*.pdf
+
+# IDE — JetBrains/CLion
+.idea/
+
+# Personal Claude Code permission overrides
+.claude/settings.local.json
+**/.claude/settings.local.json
+
+# Python artifacts
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# macOS metadata
+.DS_Store
+**/.DS_Store

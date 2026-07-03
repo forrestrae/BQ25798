@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "bq25798-docs": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "../device-register-docs/server.py"],
+      "env": { "DEVICE_CONFIG": "devices/bq25798/device.json" }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+#pragma once
+
+// ---------------------------------------------------------------------------
+// BQ25798 umbrella header
+//
+// Include this single header to bring in the full BQ25798 driver tier:
+//   - BQ25798::Device                — typed register access over TPS25751 I2Cc bus
+//   - BQ25798::PartInfo               — Part Information register (REG48h)
+//   - BQ25798::RegisterFactory / BQ25798::RegisterFactoryImpl / BQ25798::Factory
+//   - BQ25798::Registers::*           — address enum + RegisterInfo constants
+//   - All 57 register classes — status, flags, ADC, limits, control, masks, OTG
+// ---------------------------------------------------------------------------
+
+#include "BQ25798/BQ25798Registers.h"
+#include "BQ25798/BQ25798PartInfo.h"
+#include "BQ25798/BQ25798ChargerStatus0.h"
+#include "BQ25798/BQ25798ChargerStatus1.h"
+#include "BQ25798/BQ25798ChargerStatus2.h"
+#include "BQ25798/BQ25798ChargerStatus3.h"
+#include "BQ25798/BQ25798ChargerStatus4.h"
+#include "BQ25798/BQ25798FaultStatus0.h"
+#include "BQ25798/BQ25798FaultStatus1.h"
+#include "BQ25798/BQ25798ChargerFlag0.h"
+#include "BQ25798/BQ25798ChargerFlag1.h"
+#include "BQ25798/BQ25798ChargerFlag2.h"
+#include "BQ25798/BQ25798ChargerFlag3.h"
+#include "BQ25798/BQ25798FaultFlag0.h"
+#include "BQ25798/BQ25798FaultFlag1.h"
+#include "BQ25798/BQ25798AdcControl.h"
+#include "BQ25798/BQ25798AdcFunctionDisable0.h"
+#include "BQ25798/BQ25798AdcFunctionDisable1.h"
+#include "BQ25798/BQ25798IbusAdc.h"
+#include "BQ25798/BQ25798IbatAdc.h"
+#include "BQ25798/BQ25798VbusAdc.h"
+#include "BQ25798/BQ25798Vac1Adc.h"
+#include "BQ25798/BQ25798Vac2Adc.h"
+#include "BQ25798/BQ25798VbatAdc.h"
+#include "BQ25798/BQ25798VsysAdc.h"
+#include "BQ25798/BQ25798TsAdc.h"
+#include "BQ25798/BQ25798TdieAdc.h"
+#include "BQ25798/BQ25798MinimalSystemVoltage.h"
+#include "BQ25798/BQ25798ChargeVoltageLimit.h"
+#include "BQ25798/BQ25798ChargeCurrentLimit.h"
+#include "BQ25798/BQ25798InputVoltageLimit.h"
+#include "BQ25798/BQ25798InputCurrentLimit.h"
+#include "BQ25798/BQ25798PrechargeControl.h"
+#include "BQ25798/BQ25798TerminationControl.h"
+#include "BQ25798/BQ25798NtcControl0.h"
+#include "BQ25798/BQ25798NtcControl1.h"
+#include "BQ25798/BQ25798IcoCurrentLimit.h"
+#include "BQ25798/BQ25798ChargerControl0.h"
+#include "BQ25798/BQ25798ChargerControl1.h"
+#include "BQ25798/BQ25798ChargerControl2.h"
+#include "BQ25798/BQ25798ChargerControl3.h"
+#include "BQ25798/BQ25798ChargerControl4.h"
+#include "BQ25798/BQ25798ChargerControl5.h"
+#include "BQ25798/BQ25798RechargeControl.h"
+#include "BQ25798/BQ25798VotgRegulation.h"
+#include "BQ25798/BQ25798IotgRegulation.h"
+#include "BQ25798/BQ25798TimerControl.h"
+#include "BQ25798/BQ25798MpptControl.h"
+#include "BQ25798/BQ25798TemperatureControl.h"
+#include "BQ25798/BQ25798ChargerMask0.h"
+#include "BQ25798/BQ25798ChargerMask1.h"
+#include "BQ25798/BQ25798ChargerMask2.h"
+#include "BQ25798/BQ25798ChargerMask3.h"
+#include "BQ25798/BQ25798FaultMask0.h"
+#include "BQ25798/BQ25798FaultMask1.h"
+#include "BQ25798/BQ25798DplusAdc.h"
+#include "BQ25798/BQ25798DminusAdc.h"
+#include "BQ25798/BQ25798DpdmDriver.h"
+#include "BQ25798/BQ25798RegisterFactory.h"
+#include "BQ25798/BQ25798Device.h"

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "mcp__bq25798-docs__search_register",
+      "mcp__bq25798-docs__explain_bitfield",
+      "mcp__bq25798-docs__get_register"
+    ],
+    "deny": []
+  },
+  "enabledMcpjsonServers": [
+    "bq25798-docs"
+  ]
+}
