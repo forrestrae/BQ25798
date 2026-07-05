@@ -26,11 +26,15 @@ jobs:
           # Passed via env, never inline-interpolated (script-injection guard).
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
+          # Only whitespace-delimited tokens in the subject line count —
+          # prose in the commit body must never trigger a bump (v2.0.0 lesson).
+          SUBJECT="${COMMIT_MSG%%$'\n'*}"
           LEVEL=patch
-          case "$COMMIT_MSG" in
-            *"#major"*) LEVEL=major ;;
-            *"#minor"*) LEVEL=minor ;;
-          esac
+          if grep -qE '(^|[[:space:]])#major([[:space:]]|$)' <<< "$SUBJECT"; then
+            LEVEL=major
+          elif grep -qE '(^|[[:space:]])#minor([[:space:]]|$)' <<< "$SUBJECT"; then
+            LEVEL=minor
+          fi
           echo "version=$(python3 scripts/bump_version.py "$LEVEL")" >> "$GITHUB_OUTPUT"
 
       - name: Commit bump and tag
