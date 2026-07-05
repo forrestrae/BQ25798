@@ -2,6 +2,9 @@
 .venv/
 venv/
 
+# Local PlatformIO overrides (dev-only lib_deps symlink, etc.)
+platformio_local*.ini
+
 # Texas Instruments datasheets — not redistributable
 docs/*.pdf
 

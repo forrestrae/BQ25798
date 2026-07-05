@@ -30,8 +30,17 @@ headers). Nothing in TPS25751 depends on this repo. The dependency resolves from
 the PlatformIO Registry
 ([forrest/TPS25751](https://registry.platformio.org/libraries/forrest/TPS25751))
 via `lib_deps = forrest/TPS25751@^2.0.0` in `platformio.ini`. To co-develop
-against a local sibling checkout instead, temporarily switch `lib_deps` to
-`symlink://../TPS25751`.
+against a local sibling checkout instead, create a gitignored
+`platformio_local.ini` (picked up via `extra_configs = platformio_local*.ini`)
+containing:
+
+```ini
+[env]
+lib_deps = symlink://../TPS25751
+```
+
+Never edit `lib_deps` in `platformio.ini` itself — the committed file always
+points at the registry.
 
 ---
 
@@ -181,8 +190,9 @@ its
   for bumps; never edit the version fields by hand), commits the bump back as
   `chore(release): vX.Y.Z [skip ci]`, tags `vX.Y.Z`, and runs
   `pio pkg publish --no-interactive`.
-- Include `#minor` or `#major` in the commit message to raise the bump level
-  (default is patch).
+- Include `#minor` or `#major` as a whitespace-delimited token in the commit
+  **subject line** to raise the bump level (default is patch). The body is
+  never scanned, so prose mentioning the tokens is safe.
 - The registry tarball is filtered by the `export.exclude` list in `library.json`
   (dev tooling, IDE configs, `platformio.ini`, `scripts/` are not shipped). Check
   what would be published with `pio pkg pack`.
